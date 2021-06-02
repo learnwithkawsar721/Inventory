@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth'])->group(function () {
+    //Employee Route Hear--------------------------------------Start
+    Route::resource('employe',EmployeeController::class);
+    //Employee Route Hear--------------------------------------End
+});
+
+Route::get('/test',[EmployeeController::class,'test']);
+Route::post('/test/post',[EmployeeController::class,'test_post'])->name('test.post');

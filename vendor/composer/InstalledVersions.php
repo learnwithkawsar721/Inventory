@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'db10ab76357b02e1972a1cb6b07e4b3303854a4f',
+    'reference' => '296d17138ea7b877c6f4a5e6b4ca6be1f21039e8',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -437,6 +437,15 @@ private static $installed = array (
         0 => 'v8.44.0',
       ),
     ),
+    'intervention/image' => 
+    array (
+      'pretty_version' => '2.5.1',
+      'version' => '2.5.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'abbf18d5ab8367f96b3205ca3c89fb2fa598c69e',
+    ),
     'kodova/hamcrest-php' => 
     array (
       'replaced' => 
@@ -460,7 +469,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'db10ab76357b02e1972a1cb6b07e4b3303854a4f',
+      'reference' => '296d17138ea7b877c6f4a5e6b4ca6be1f21039e8',
     ),
     'laravel/sail' => 
     array (
@@ -983,6 +992,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
+    ),
+    'sven/artisan-view' => 
+    array (
+      'pretty_version' => '3.4.0',
+      'version' => '3.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'd7ea982974767ee69753294a8141259bf6d75703',
     ),
     'swiftmailer/swiftmailer' => 
     array (

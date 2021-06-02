@@ -23,6 +23,12 @@
     <link href="{{ asset('dashboard') }}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('dashboard') }}/assets/css/app.min.css" rel="stylesheet" type="text/css"
         id="app-stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+    <link href="{{ asset('dashboard') }}/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ asset('dashboard') }}/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" />
 
 </head>
 
@@ -235,12 +241,13 @@
                     <div class="user-box">
 
                         <div class="float-left">
-                            <img src="{{ asset('dashboard') }}/assets/images/users/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
+                            <img src="{{ asset('dashboard') }}/assets/images/users/avatar-1.jpg" alt=""
+                                class="avatar-md rounded-circle">
                         </div>
                         <div class="user-info">
                             <div class="dropdown">
-                                <a href="{{ route('home') }}" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
+                                <a href="{{ route('home') }}" class="dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -260,14 +267,13 @@
 
                         <li>
                             <a href="javascript: void(0);" class="waves-effect">
-                                <i class="mdi mdi-email"></i>
+                                <i class="fas fa-users"></i>
                                 <span> Mail </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="mail-inbox.html">Inbox</a></li>
-                                <li><a href="mail-compose.html">Compose Mail</a></li>
-                                <li><a href="mail-read.html">View Mail</a></li>
+                                <li><a href="{{ route('employe.create') }}">Add Employee</a></li>
+                                <li><a href="{{ route('employe.index') }}">All Employee</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -293,7 +299,7 @@
                 <!-- Start Content-->
                 <div class="container-fluid">
 
-                   @yield('dashboard')
+                    @yield('dashboard')
 
                 </div>
                 <!-- end container-fluid -->
@@ -333,9 +339,18 @@
 
     <!-- Vendor js -->
     <script src="{{ asset('dashboard') }}/assets/js/vendor.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <!-- App js -->
     <script src="{{ asset('dashboard') }}/assets/js/app.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Datatables init -->
+    <script src="{{ asset('dashboard') }}/assets/js/pages/datatables.init.js"></script>
+    <!-- third party js -->
+    <script src="{{ asset('dashboard') }}/assets/libs/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('dashboard') }}/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+    @yield('script')
 
 </body>
 
