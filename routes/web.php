@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
 
     //Customer Route Hear--------------------------------------Start
     Route::resource('customer',CustomerController::class);
-    Route::get('/customer/{id}/delete',[EmployeeController::class,'delete'])->name('customer.delete');
+    Route::get('/customer/{id}/delete',[CustomerController::class,'delete'])->name('customer.delete');
     //Customer Route Hear--------------------------------------End
 });
 

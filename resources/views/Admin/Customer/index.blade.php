@@ -37,7 +37,7 @@
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Address</th>
-                                <th>Salary</th>
+                                <th>City</th>
                                 <th>Photo</th>
                                 <th>Action</th>
                             </tr>
@@ -49,7 +49,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->address }}</td>
-                                    <td>{{ $item->salary }}</td>
+                                    <td>{{ $item->city }}</td>
                                     <td>
                                         <img src="{{ asset('Uploades/customer/' . $item->photo) }}" alt="" width="50"
                                             height="50">
