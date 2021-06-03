@@ -26,8 +26,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    {{-- {{ $emplotyee_count }} --}}
-                    <h1 class="card-title">Total Suppliers (<strong></strong>)</h1>
+                    <h1 class="card-title">Total Suppliers (<strong>{{ $count }}</strong>)</h1>
                 </div>
                 <div class="card-body">
                     <table id="responsive-datatable" class="table table-striped table-bordered dt-responsive nowrap"
@@ -38,21 +37,21 @@
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Address</th>
-                                <th>Salary</th>
+                                <th>Type</th>
                                 <th>Photo</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($employees as $item)
+                            @foreach ($suppliers as $item)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->address }}</td>
-                                    <td>{{ $item->salary }}</td>
+                                    <td>{{ $item->type }}</td>
                                     <td>
-                                        <img src="{{ asset('Uploades/employees/' . $item->photo) }}" alt="" width="50"
+                                        <img src="{{ asset('Uploades/suppliers/' . $item->photo) }}" alt="" width="50"
                                             height="50">
                                     </td>
                                     <td>
@@ -64,7 +63,7 @@
                                             class="btn btn-sm btn-primary">Show</a>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
 
                         </tbody>
                     </table>

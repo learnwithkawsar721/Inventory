@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Suppliers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use App\Http\Requests\SuppliersRequest;
 
 class SuppliersController extends Controller
 {
@@ -14,7 +17,10 @@ class SuppliersController extends Controller
      */
     public function index()
     {
-        return view('Admin.Suppliers.index');
+        return view('Admin.Suppliers.index',[
+            'suppliers'=>Suppliers::latest()->get(),
+            'count'=>Suppliers::count(),
+        ]);
     }
 
     /**
@@ -35,7 +41,30 @@ class SuppliersController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            'name'=>'required',
+            'phone'=>"required | unique:suppliers,phone",
+            'address'=>'required',
+            'city'=>'required',
+            'shopname'=>'required',
+            'photo'=>'image',
+            'email'=>'email|unique:suppliers,email'
+        ]);
+          $suppliers = Suppliers::create($request->except('_token','photo')+[
+            'user_id'=>Auth::id(),
+        ]);
+        if($request->hasFile('photo')){
+            $file_name = 'suppliers-'.time().'.'.$request->file('photo')->getClientOriginalExtension();
+            Image::make($request->file('photo'))->resize(150,150)->save(public_path('Uploades/suppliers/'.$file_name),40);
+            $suppliers->update([
+                'photo'=>$file_name,
+            ]);
+        }
+        $notification = array(
+                'message'=>'suppliers Inserted Successfully',
+                'alert-type'=>'success',
+        );
+        return redirect(route('suppliers.index'))->with($notification);
     }
 
     /**
@@ -46,7 +75,9 @@ class SuppliersController extends Controller
      */
     public function show($id)
     {
-        return view('Admin.Suppliers.show');
+        return view('Admin.Suppliers.show',[
+            'suppliers'=>Suppliers::where('id',$id)->first(),
+        ]);
     }
 
     /**
@@ -57,7 +88,9 @@ class SuppliersController extends Controller
      */
     public function edit($id)
     {
-        return view('Admin.Suppliers.edit');
+        return view('Admin.Suppliers.edit',[
+            'suppliers'=>Suppliers::where('id',$id)->first(),
+        ]);
     }
 
     /**
@@ -69,7 +102,32 @@ class SuppliersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+       $request->validate([
+            'name'=>'required',
+            'phone'=>"required | unique:suppliers,phone,$id",
+            'address'=>'required',
+            'city'=>'required',
+            'shopname'=>'required',
+            'photo'=>'image',
+            'email'=>"email|unique:suppliers,email,$id"
+        ]);
+        $suppliers = Suppliers::where('id',$id)->first();
+         $suppliers->update($request->except('_token','_method','photo'));
+        if($request->hasFile('photo')){
+            if($suppliers->photo){
+                unlink(public_path('Uploades/suppliers/'.$suppliers->photo));
+            }
+            $file_name = 'suppliers-'.time().'.'.$request->file('photo')->getClientOriginalExtension();
+            Image::make($request->file('photo'))->resize(150,150)->save(public_path('Uploades/suppliers/'.$file_name),40);
+            $suppliers->update([
+                'photo'=>$file_name,
+            ]);
+        }
+          $notification = array(
+                'message'=>'suppliers Updated Successfully',
+                'alert-type'=>'success',
+            );
+            return redirect(route('suppliers.index'))->with($notification);
     }
 
     /**
@@ -80,6 +138,13 @@ class SuppliersController extends Controller
      */
     public function delete($id)
     {
-        //
+        $suppliers = Suppliers::where('id',$id)->first();
+        unlink(public_path('Uploades/suppliers/'.$suppliers->photo));
+        $suppliers->delete();
+         $notification = array(
+                'message'=>'Suppliers Delete Successfully',
+                'alert-type'=>'success',
+            );
+        return back()->with($notification);
     }
 }

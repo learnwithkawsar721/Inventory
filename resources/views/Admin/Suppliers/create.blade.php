@@ -45,13 +45,6 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="address">Suppliers address</label>
-                            <input type="text" name="address" class="form-control" id="address" placeholder="Suppliers address">
-                            @error('address')
-                                <strong class="text-danger">{{ $message }}</strong>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                             <label for="phone">Suppliers phone</label>
                             <input type="text" name="phone" class="form-control" id="phone" placeholder="Suppliers phone">
                             @error('phone')
@@ -59,24 +52,13 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="experience">Suppliers experience</label>
-                            <input type="text" name="experience" class="form-control" id="experience" placeholder="Suppliers experience">
+                            <label for="address">Suppliers address</label>
+                            <input type="text" name="address" class="form-control" id="address" placeholder="Suppliers address">
+                            @error('address')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
 
-                        </div>
-                        <div class="form-group">
-                            <label for="salary">Suppliers salary</label>
-                            <input type="text" name="salary" class="form-control" id="salary" placeholder="Suppliers salary">
-                            @error('salary')
-                                <strong class="text-danger">{{ $message }}</strong>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="vacation">Suppliers vacation</label>
-                            <input type="text" name="vacation" class="form-control" id="vacation" placeholder="Suppliers vacation">
-                            @error('vacation')
-                                <strong class="text-danger">{{ $message }}</strong>
-                            @enderror
-                        </div>
                         <div class="form-group">
                             <label for="city">Suppliers city</label>
                             <input type="text" name="city" class="form-control" id="city" placeholder="Suppliers city">
@@ -85,9 +67,51 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="nid">Suppliers nid</label>
-                            <input type="text" name="nid" class="form-control" id="nid" placeholder="Suppliers nid">
-                            @error('nid')
+                            <label for="type">Suppliers Type</label>
+                           <select name="type" id="type" class="form-control">
+                               <option value="Distributor">Distributor</option>
+                               <option value="wholeseller">wholeseller</option>
+                               <option value="Brochure">Brochure</option>
+                           </select>
+                            @error('type')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="shopname">Shop Name</label>
+                            <input type="text" name="shopname" class="form-control" id="shopname"
+                                placeholder="shopname">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="account_holder">account_holder</label>
+                            <input type="text" name="account_holder" class="form-control" id="account_holder"
+                                placeholder="account_holder">
+                            @error('account_holder')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="account_number">account_number</label>
+                            <input type="text" name="account_number" class="form-control" id="account_number"
+                                placeholder="account_number">
+                            @error('account_number')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="bank_name">bank_name</label>
+                            <input type="text" name="bank_name" class="form-control" id="bank_name"
+                                placeholder="bank_name">
+                            @error('bank_name')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="bank_branch">bank_branch</label>
+                            <input type="text" name="bank_branch" class="form-control" id="bank_branch"
+                                placeholder="bank_branch">
+                            @error('bank_branch')
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror
                         </div>
