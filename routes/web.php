@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('employe',EmployeeController::class);
     Route::get('/employe/{id}/delete',[EmployeeController::class,'delete'])->name('employe.delete');
     //Employee Route Hear--------------------------------------End
+
+    //Customer Route Hear--------------------------------------Start
+    Route::resource('customer',CustomerController::class);
+    Route::get('/customer/{id}/delete',[EmployeeController::class,'delete'])->name('customer.delete');
+    //Customer Route Hear--------------------------------------End
 });
 
 Route::get('/test',[EmployeeController::class,'test']);

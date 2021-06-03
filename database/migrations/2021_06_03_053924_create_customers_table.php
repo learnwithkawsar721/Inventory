@@ -15,6 +15,20 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->string('name');
+            $table->string('email')->nullable();
+            $table->string('phone');
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('shopname')->nullable();
+            $table->string('account_holder')->nullable();
+            $table->string('account_number')->nullable();
+            $table->string('bank_name')->nullable();
+            $table->string('bank_branch')->nullable();
+            $table->string('photo')->nullable();
+            $table->integer('role')->default();
+            $table->integer('status')->default();
             $table->timestamps();
         });
     }

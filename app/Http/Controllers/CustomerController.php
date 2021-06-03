@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class CustomerController extends Controller
 {
@@ -14,7 +16,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        return view('Admin.Customer.index',[
+            'customeers'=>Customer::latest()->get(),
+            'count'=>Customer::count(),
+        ]);
     }
 
     /**
@@ -24,7 +29,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.Customer.create');
     }
 
     /**
@@ -35,7 +40,29 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'phone'=>'required',
+            'city'=>'required',
+            'address'=>'required',
+            'photo'=>'image',
+            'email'=>'email|unique:customers',
+        ]);
+        $customer = Customer::create($request->except('_token','photo')+[
+            'user_id'=>Auth::id(),
+        ]);
+        if($request->hasFile('photo')){
+            $file_name = 'customer-'.time().'.'.$request->file('photo')->getClientOriginalExtension();
+            Image::make($request->file('photo'))->resize(150,150)->save(public_path('Uploades/customer/'.$file_name),40);
+            $customer->update([
+                'photo'=>$file_name,
+            ]);
+        }
+        $notification = array(
+                'message'=>'Customer Inserted Successfully',
+                'alert-type'=>'success',
+        );
+        return redirect(route('customer.index'))->with($notification);
     }
 
     /**
@@ -46,7 +73,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return view('Admin.Customer.show');
     }
 
     /**
@@ -57,7 +84,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('Admin.Customer.edit');
     }
 
     /**
@@ -69,7 +96,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -78,7 +105,7 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function delete(Customer $customer)
     {
         //
     }
