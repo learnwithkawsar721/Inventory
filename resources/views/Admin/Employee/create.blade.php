@@ -33,44 +33,72 @@
                         <div class="form-group">
                             <label for="name">Employee Name</label>
                             <input type="text" name="name" class="form-control" id="name" placeholder="Employee Name">
+                            @error('name')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="email">Employee email</label>
                             <input type="email" name="email" class="form-control" id="email" placeholder="Employee email">
+                            @error('email')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="address">Employee address</label>
                             <input type="text" name="address" class="form-control" id="address" placeholder="Employee address">
+                            @error('address')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="phone">Employee phone</label>
                             <input type="text" name="phone" class="form-control" id="phone" placeholder="Employee phone">
+                            @error('phone')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="experience">Employee experience</label>
                             <input type="text" name="experience" class="form-control" id="experience" placeholder="Employee experience">
+
                         </div>
                         <div class="form-group">
                             <label for="salary">Employee salary</label>
                             <input type="text" name="salary" class="form-control" id="salary" placeholder="Employee salary">
+                            @error('salary')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="vacation">Employee vacation</label>
                             <input type="text" name="vacation" class="form-control" id="vacation" placeholder="Employee vacation">
+                            @error('vacation')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="city">Employee city</label>
                             <input type="text" name="city" class="form-control" id="city" placeholder="Employee city">
+                            @error('city')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="nid">Employee nid</label>
-                            <input type="text" name="nic" class="form-control" id="nid" placeholder="Employee nid">
+                            <input type="text" name="nid" class="form-control" id="nid" placeholder="Employee nid">
+                            @error('nid')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="photo">Employee photo</label>
+                            <label for="tenant_photo">Employee photo</label>
                             <br>
                             <img id="tenant_photo_viewer" src="#" />
                             <input name="photo" id="tenant_photo" type="file" class="form-control" accept="image/x-png, image/jpeg" onchange="readURL(this);">
+                            @error('photo')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-purple waves-effect waves-light">Submit</button>

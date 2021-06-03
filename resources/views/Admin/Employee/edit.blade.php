@@ -19,5 +19,81 @@
             </div>
         </div>
     </div>
-    <!-- end page title -->
+    <!-- end page title --> <div class="row">
+        <!-- Basic example -->
+        <div class="col-xl-6 m-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Add New Employee</h3>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('employe.update',$employee->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
+                        <div class="form-group">
+                            <label for="name">Employee Name</label>
+                            <input type="text" name="name" value="{{ $employee->name }}" class="form-control" id="name" placeholder="Employee Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Employee email</label>
+                            <input type="email" name="email" value="{{ $employee->email }}" class="form-control" id="email" placeholder="Employee email">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Employee address</label>
+                            <input type="text" name="address" value="{{ $employee->address }}" class="form-control" id="address" placeholder="Employee address">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Employee phone</label>
+                            <input type="text" name="phone" value="{{ $employee->phone }}" class="form-control" id="phone" placeholder="Employee phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Employee experience</label>
+                            <input type="text" name="experience" value="{{ $employee->experience }}" class="form-control" id="experience" placeholder="Employee experience">
+                        </div>
+                        <div class="form-group">
+                            <label for="salary">Employee salary</label>
+                            <input type="text" name="salary" value="{{ $employee->salary }}" class="form-control" id="salary" placeholder="Employee salary">
+                        </div>
+                        <div class="form-group">
+                            <label for="vacation">Employee vacation</label>
+                            <input type="text" name="vacation" value="{{ $employee->vacation }}" class="form-control" id="vacation" placeholder="Employee vacation">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Employee city</label>
+                            <input type="text" name="city" value="{{ $employee->city }}" class="form-control" id="city" placeholder="Employee city">
+                        </div>
+                        <div class="form-group">
+                            <label for="nid">Employee nid</label>
+                            <input type="text" name="nid" value="{{ $employee->nid }}" class="form-control" id="nid" placeholder="Employee nid">
+                        </div>
+                        <div class="form-group">
+                            <label for="tenant_photo">Employee photo</label>
+                            <br>
+                            <img id="tenant_photo_viewer" src="{{ ($employee->photo)?asset('Uploades/employees/'.$employee->photo):'#' }}" />
+                            <input name="photo" id="tenant_photo" type="file" class="form-control" accept="image/x-png, image/jpeg" onchange="readURL(this);">
+                        </div>
+
+                        <button type="submit" class="btn btn-purple waves-effect waves-light">Submit</button>
+                    </form>
+                </div>
+                <!-- card-body -->
+            </div>
+            <!-- card -->
+        </div>
+        <!-- col-->
+    </div>
+@endsection
+@section('script')
+    <script>
+       function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#tenant_photo_viewer').attr('src', e.target.result).width(150).height(150);
+        };
+        $('#tenant_photo_viewer').removeClass('hidden');
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    </script>
 @endsection

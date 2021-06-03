@@ -45,16 +45,22 @@
                         <tbody>
                             @foreach ($employees as $item)
                                 <tr>
-                                    <td>{{ $loop->index+1 }}</td>
+                                    <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->address }}</td>
                                     <td>{{ $item->salary }}</td>
                                     <td>
-                                        <img src="{{ asset('Uploades/employees/'.$item->photo) }}" alt="" width="50" height="50">
+                                        <img src="{{ asset('Uploades/employees/' . $item->photo) }}" alt="" width="50"
+                                            height="50">
                                     </td>
                                     <td>
-                                        <button class="btn btn-sm btn-info">Edit</button>
+                                        <a href="{{ route('employe.edit', $item->id) }}"
+                                            class="btn btn-sm btn-info">Edit</a>
+                                        <button value="{{ route('employe.delete', $item->id) }}"
+                                            class="btn btn-sm btn-danger delete_btn">Delete</button>
+                                        <a href="{{ route('employe.show', $item->id) }}"
+                                            class="btn btn-sm btn-primary">Show</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -73,6 +79,28 @@
 
 @endsection
 @section('script')
+    <script>
+        $(document).ready(function() {
+            $('.delete_btn').click(function() {
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                         var url = $(this).val();
+                         window.location.href = url;
+                    }
+                })
+            })
+        });
+
+    </script>
     <script>
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}"

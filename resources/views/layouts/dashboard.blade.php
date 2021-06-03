@@ -27,8 +27,9 @@
 
     <link href="{{ asset('dashboard') }}/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"
         type="text/css" />
-    <link href="{{ asset('dashboard') }}/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet"
-        type="text/css" />
+    <link href="{{ asset('dashboard') }}/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    {{-- sweetalert2 Css --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.css">
 
 </head>
 
@@ -268,7 +269,7 @@
                         <li>
                             <a href="javascript: void(0);" class="waves-effect">
                                 <i class="fas fa-users"></i>
-                                <span> Mail </span>
+                                <span> Employee </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
@@ -339,8 +340,7 @@
 
     <!-- Vendor js -->
     <script src="{{ asset('dashboard') }}/assets/js/vendor.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
     <!-- App js -->
     <script src="{{ asset('dashboard') }}/assets/js/app.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -350,6 +350,8 @@
     <!-- third party js -->
     <script src="{{ asset('dashboard') }}/assets/libs/datatables/jquery.dataTables.min.js"></script>
     <script src="{{ asset('dashboard') }}/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+    {{-- sweetalert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
     @yield('script')
 
 </body>

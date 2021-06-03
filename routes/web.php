@@ -26,6 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->group(function () {
     //Employee Route Hear--------------------------------------Start
     Route::resource('employe',EmployeeController::class);
+    Route::get('/employe/{id}/delete',[EmployeeController::class,'delete'])->name('employe.delete');
     //Employee Route Hear--------------------------------------End
 });
 
