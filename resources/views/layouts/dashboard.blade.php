@@ -299,6 +299,17 @@
                                 <li><a href="{{ route('suppliers.index') }}">All Suppliers</a></li>
                             </ul>
                         </li>
+                         <li>
+                            <a href="javascript: void(1);" class="waves-effect">
+                                <i class="fas fa-users"></i>
+                                <span> Category </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="{{ route('category.create') }}">Add Category</a></li>
+                                <li><a href="{{ route('category.index') }}">All Category</a></li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="javascript: void(1);" class="waves-effect">
                                 <i class="fas fa-users"></i>

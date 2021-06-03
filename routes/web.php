@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SalaryController;
@@ -46,6 +47,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('salary',SalaryController::class);
     Route::get('/pay/salary',[SalaryController::class,'pay_salary'])->name('salary.pay');
     //Salary Route Hear--------------------------------------End
+
+    //Category Route Hear--------------------------------------Start
+    Route::resource('category',CategoryController::class);
+    Route::get('/suppliers/{id}/delete',[CategoryController::class,'delete'])->name('category.delete');
+    //Category Route Hear--------------------------------------End
 });
 
 Route::get('/test',[EmployeeController::class,'test']);

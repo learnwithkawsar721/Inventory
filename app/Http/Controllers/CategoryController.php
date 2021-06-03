@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -13,7 +15,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('Admin.Category.index',[
+            'count'=>Category::count(),
+            'category'=>Category::latest()->get()
+        ]);
     }
 
     /**
@@ -23,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.Category.create');
     }
 
     /**
@@ -34,7 +39,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required|unique:categories,name'
+        ]);
+        Category::create($request->except('_token')+['user_id'=>Auth::id()]);
+          $notification = array(
+                'message'=>"Category Added Successfully",
+                'alert-type'=>'success',
+            );
+            return redirect(route('category.index'))->with($notification);
     }
 
     /**
@@ -45,7 +58,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('Admin.Category.show');
     }
 
     /**
@@ -56,7 +69,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('Admin.Category.edit',[
+            'category'=>Category::where('id',$id)->first()
+        ]);
     }
 
     /**
@@ -68,7 +83,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $request->validate([
+            'name'=>"required|unique:categories,name,$id"
+        ]);
+        $category = Category::where('id',$id)->first();
+        $category->update($request->except('_token','_method'));
+         $notification = array(
+                'message'=>"Category Update Successfully",
+                'alert-type'=>'success',
+            );
+            return redirect(route('category.index'))->with($notification);
     }
 
     /**
@@ -77,8 +101,14 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+       $category = Category::where('id',$id)->first();
+       $category->delete();
+         $notification = array(
+                'message'=>"Category Deleted Successfully",
+                'alert-type'=>'success',
+            );
+            return back()->with($notification);
     }
 }
