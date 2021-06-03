@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeesTable extends Migration
+class CreateSuppliersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,21 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('phone');
             $table->string('address');
-            $table->string('experience');
-            $table->string('photo')->default('default.png');
-            $table->string('salary');
-            $table->string('vacation');
             $table->string('city');
-            $table->string('nid');
+            $table->string('type');
+            $table->string('shop');
+            $table->string('account_holder')->nullable();
+            $table->string('account_number')->nullable();
+            $table->string('bank_name')->nullable();
+            $table->string('bank_branch')->nullable();
+            $table->string('photo')->default('default.png');
             $table->integer('role')->default();
             $table->integer('status')->default();
             $table->timestamps();
@@ -39,6 +41,6 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('suppliers');
     }
 }

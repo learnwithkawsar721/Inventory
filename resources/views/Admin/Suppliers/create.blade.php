@@ -1,0 +1,127 @@
+@extends('layouts.dashboard')
+@section('title')
+    Suppliers
+@endsection
+@section('dashboard')
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Suppliers</h4>
+                <div class="page-title-right">
+                    <ol class="breadcrumb p-0 m-0">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('suppliers.index') }}">Suppliers</a></li>
+                        <li class="breadcrumb-item active">Add Suppliers</li>
+                    </ol>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+    <div class="row">
+        <!-- Basic example -->
+        <div class="col-xl-6 m-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Add New Suppliers</h3>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('suppliers.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="name">Suppliers Name</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Suppliers Name">
+                            @error('name')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Suppliers email</label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="Suppliers email">
+                            @error('email')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Suppliers address</label>
+                            <input type="text" name="address" class="form-control" id="address" placeholder="Suppliers address">
+                            @error('address')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Suppliers phone</label>
+                            <input type="text" name="phone" class="form-control" id="phone" placeholder="Suppliers phone">
+                            @error('phone')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Suppliers experience</label>
+                            <input type="text" name="experience" class="form-control" id="experience" placeholder="Suppliers experience">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="salary">Suppliers salary</label>
+                            <input type="text" name="salary" class="form-control" id="salary" placeholder="Suppliers salary">
+                            @error('salary')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="vacation">Suppliers vacation</label>
+                            <input type="text" name="vacation" class="form-control" id="vacation" placeholder="Suppliers vacation">
+                            @error('vacation')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Suppliers city</label>
+                            <input type="text" name="city" class="form-control" id="city" placeholder="Suppliers city">
+                            @error('city')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="nid">Suppliers nid</label>
+                            <input type="text" name="nid" class="form-control" id="nid" placeholder="Suppliers nid">
+                            @error('nid')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="tenant_photo">Suppliers photo</label>
+                            <br>
+                            <img id="tenant_photo_viewer" src="#" />
+                            <input name="photo" id="tenant_photo" type="file" class="form-control" accept="image/x-png, image/jpeg" onchange="readURL(this);">
+                            @error('photo')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+
+                        <button type="submit" class="btn btn-purple waves-effect waves-light">Submit</button>
+                    </form>
+                </div>
+                <!-- card-body -->
+            </div>
+            <!-- card -->
+        </div>
+        <!-- col-->
+    </div>
+@endsection
+@section('script')
+    <script>
+       function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#tenant_photo_viewer').attr('src', e.target.result).width(150).height(150);
+        };
+        $('#tenant_photo_viewer').removeClass('hidden');
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    </script>
+@endsection
