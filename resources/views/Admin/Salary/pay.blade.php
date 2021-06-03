@@ -29,6 +29,7 @@
                     <h1 class="card-title">All Advanced Salary <span class="pull-right">
                         <a href="{{ route('salary.create') }}" class="btn btn-sm btn-primary">Add New</a>
                     </span></h1>
+                    <h3>{{ date("F Y") }}</h3>
                 </div>
                 <div class="card-body">
                     <table id="responsive-datatable" class="table table-striped table-bordered dt-responsive nowrap"
@@ -45,27 +46,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($salary)
+                            @if ($employee)
 
 
-                            @foreach ($salary as $item)
+                            @foreach ($employee as $item)
                                 <tr>
 
-                                    <td>{{ $item->employee->name }}</td>
+                                    <td>{{ $item->name }}</td>
                                     <td>
-                                        <img src="{{ asset('Uploades/employees/' . $item->employee->photo) }}" alt="" width="50"
+                                        <img src="{{ asset('Uploades/employees/' . $item->photo) }}" alt="" width="50"
                                             height="50">
                                     </td>
-                                    <td>{{ $item->employee->salary }}</td>
-                                    <td>{{ $item->month }}</td>
-                                    <td>{{ $item->advanced_salary }}</td>
+                                    <td>{{ $item->salary }}</td>
+                                    <td>{{ date("F",strtotime("-1 month")) }}</td>
+                                    <td>{{ $item->advanced }}</td>
                                     <td>
-                                        <a href="{{ route('employe.edit', $item->id) }}"
-                                            class="btn btn-sm btn-info">Edit</a>
-                                        <button value="{{ route('employe.delete', $item->id) }}"
-                                            class="btn btn-sm btn-danger delete_btn">Delete</button>
-                                        <a href="{{ route('employe.show', $item->id) }}"
-                                            class="btn btn-sm btn-primary">Show</a>
+                                       <a href="" class="btn btn-sm btn-primary">Pay Now</a>
                                     </td>
                                 </tr>
                             @endforeach

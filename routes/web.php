@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\SuppliersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('suppliers',SuppliersController::class);
     Route::get('/suppliers/{id}/delete',[SuppliersController::class,'delete'])->name('suppliers.delete');
     //suppliers Route Hear--------------------------------------End
+
+    //Salary Route Hear--------------------------------------Start
+    Route::resource('salary',SalaryController::class);
+    Route::get('/pay/salary',[SalaryController::class,'pay_salary'])->name('salary.pay');
+    //Salary Route Hear--------------------------------------End
 });
 
 Route::get('/test',[EmployeeController::class,'test']);

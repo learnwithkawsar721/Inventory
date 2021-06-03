@@ -299,6 +299,18 @@
                                 <li><a href="{{ route('suppliers.index') }}">All Suppliers</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="javascript: void(1);" class="waves-effect">
+                                <i class="fas fa-users"></i>
+                                <span> Salary (EMP) </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="{{ route('salary.create') }}">Add Advanced Salary</a></li>
+                                <li><a href="{{ route('salary.index') }}">All Advanced Salary</a></li>
+                                <li><a href="{{ route('salary.pay') }}">Pay Salary</a></li>
+                            </ul>
+                        </li>
                     </ul>
 
                 </div>

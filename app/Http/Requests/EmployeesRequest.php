@@ -24,15 +24,7 @@ class EmployeesRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|string|max:255',
-            'email'=>'required|unique:employees',
-            'phone'=>'required',
-            'address'=>'required',
-            'photo'=>'required|image',
-            'salary'=>'required',
-            'vacation'=>'required',
-            'city'=>'required',
-            'nid'=>'required',
+
         ];
     }
 }

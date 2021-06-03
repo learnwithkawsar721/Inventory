@@ -42,7 +42,7 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EmployeesRequest $request)
+    public function store(Request $request)
     {
         $employee = Employee::create($request->except('_token','photo')+[
             'user_id'=>Auth::id(),
