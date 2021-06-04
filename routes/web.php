@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\SuppliersController;
 use Illuminate\Support\Facades\Auth;
@@ -50,8 +51,13 @@ Route::middleware(['auth'])->group(function () {
 
     //Category Route Hear--------------------------------------Start
     Route::resource('category',CategoryController::class);
-    Route::get('/suppliers/{id}/delete',[CategoryController::class,'delete'])->name('category.delete');
+    Route::get('/category/{id}/delete',[CategoryController::class,'delete'])->name('category.delete');
     //Category Route Hear--------------------------------------End
+
+    //Product Route Hear--------------------------------------Start
+    Route::resource('product',ProductController::class);
+    Route::get('/product/{id}/delete',[ProductController::class,'delete'])->name('product.delete');
+    //Product Route Hear--------------------------------------End
 });
 
 Route::get('/test',[EmployeeController::class,'test']);

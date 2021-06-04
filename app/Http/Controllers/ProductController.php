@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Suppliers;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +16,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('Admin.Product.index',[
+            'count'=>Product::count(),
+            'products'=>Product::latest()->get()
+        ]);
     }
 
     /**
@@ -24,7 +29,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.Product.create',[
+            'category'=>Category::all(),
+            'suppliers'=>Suppliers::all(),
+        ]);
     }
 
     /**
@@ -35,7 +43,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'product_name'=>'required|max:70',
+            'product_code'=>"required|unique:products,product_code",
+            'godaun'=>'required',
+            'product_route'=>'required',
+            'buy_day'=>'required',
+            'expire_day'=>'required',
+            'buy_price'=>'required',
+            'selling_price'=>'required',
+        ]);
+        dd($request->all());
     }
 
     /**
@@ -46,7 +64,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('Admin.Product.show');
     }
 
     /**
@@ -57,7 +75,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('Admin.Product.edit');
     }
 
     /**
@@ -69,7 +87,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        dd($request->all());
     }
 
     /**

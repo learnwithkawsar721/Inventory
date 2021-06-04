@@ -313,6 +313,17 @@
                         <li>
                             <a href="javascript: void(1);" class="waves-effect">
                                 <i class="fas fa-users"></i>
+                                <span> Product </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="{{ route('product.create') }}">Add Product</a></li>
+                                <li><a href="{{ route('product.index') }}">All Product</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(1);" class="waves-effect">
+                                <i class="fas fa-users"></i>
                                 <span> Salary (EMP) </span>
                                 <span class="menu-arrow"></span>
                             </a>
