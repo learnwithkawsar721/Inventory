@@ -48,7 +48,7 @@
                                             class="btn btn-sm btn-info">Edit</a>
                                         <button value="{{ route('category.delete', $item->id) }}"
                                             class="btn btn-sm btn-danger delete_btn">Delete</button>
-                                       
+
                                     </td>
                                 </tr>
                             @endforeach

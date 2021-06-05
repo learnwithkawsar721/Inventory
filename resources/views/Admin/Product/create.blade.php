@@ -103,7 +103,7 @@
 
                         </div>
                         <div class="form-group">
-                            <label for="tenant_photo">Employee photo</label>
+                            <label for="tenant_photo">Product photo</label>
                             <br>
                             <img id="tenant_photo_viewer" src="#" />
                             <input name="product_img" id="tenant_photo" type="file" class="form-control"

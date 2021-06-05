@@ -35,6 +35,12 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Suppliers</th>
+                                <th>Godaun</th>
+                                <th>buy_price</th>
+                                <th>selling_price</th>
+                                <th>Image</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -43,11 +49,21 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $item->product_name }}</td>
+                                    <td>{{ $item->category->name }}</td>
+                                    <td>{{ $item->suppler->name }}</td>
+                                    <td>{{ $item->godaun }}</td>
+                                    <td>{{ $item->buy_price}}</td>
+                                    <td>{{ $item->selling_price}}</td>
                                     <td>
-                                        <a href="{{ route('category.edit', $item->id) }}"
+                                        <img src="{{ asset('Uploades/product/'.$item->product_img) }}" width="50" height="50" alt="">
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('product.edit', $item->id) }}"
                                             class="btn btn-sm btn-info">Edit</a>
-                                        <button value="{{ route('category.delete', $item->id) }}"
+                                        <button value="{{ route('product.delete', $item->id) }}"
                                             class="btn btn-sm btn-danger delete_btn">Delete</button>
+                                             <a href="{{ route('product.show', $item->id) }}"
+                                            class="btn btn-sm btn-primary">Show</a>
 
                                     </td>
                                 </tr>

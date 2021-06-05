@@ -26,7 +26,7 @@ class CreateProductsTable extends Migration
             $table->string('expire_day');
             $table->string('buy_price');
             $table->string('selling_price');
-            $table->string('product_img');
+            $table->string('product_img')->default('product.png');
             $table->integer('status')->default(1);
             $table->timestamps();
         });
