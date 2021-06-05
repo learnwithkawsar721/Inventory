@@ -57,8 +57,9 @@
 
                         </div>
                          <div class="form-group">
-                            <input type="hidden" name="date" value="{{ date('d/m/Y') }}" id="date" class="form-control"
+                            <input type="hidden" name="date" value="{{ date('Y-m-d') }}" id="date" class="form-control"
                                 placeholder="date">
+                                <input type="hidden" name="year" value="{{ date('Y') }}">
 
                         </div>
 

@@ -63,6 +63,8 @@ Route::middleware(['auth'])->group(function () {
     //Expense Route Hear--------------------------------------Start
     Route::resource('expenses',ExpensesController::class);
     Route::get('/expenses/{id}/delete',[ExpensesController::class,'delete'])->name('expenses.delete');
+    Route::get('/today/expenses',[ExpensesController::class,'today_expenses'])->name('expenses.today');
+     Route::get('/search/expenses',[ExpensesController::class,'search_expenses'])->name('expenses.search');
     //Expense Route Hear--------------------------------------End
 });
 

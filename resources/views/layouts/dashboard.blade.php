@@ -333,12 +333,20 @@
                                 <li><a href="{{ route('salary.pay') }}">Pay Salary</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="{{ route('expenses.index') }}" class="waves-effect">
-                                <i class="mdi mdi-home"></i>
+                         <li>
+                            <a href="javascript: void(1);" class="waves-effect">
+                                <i class="fas fa-users"></i>
                                 <span> Expenses </span>
+                                <span class="menu-arrow"></span>
                             </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+
+                                <li><a href="{{ route('expenses.index') }}">All Expenses </a></li>
+                                <li><a href="{{ route('expenses.today') }}">Today Expenses</a></li>
+                                <li><a href="{{ route('expenses.search') }}">Search Expenses</a></li>
+                            </ul>
                         </li>
+
                     </ul>
 
                 </div>

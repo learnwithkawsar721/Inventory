@@ -7,12 +7,12 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                <h4 class="page-title">Expenses</h4>
+                <h4 class="page-title">Today Expenses</h4>
                 <div class="page-title-right">
                     <ol class="breadcrumb p-0 m-0">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('expenses.index') }}">Expenses</a></li>
-                        <li class="breadcrumb-item active">Expenses page</li>
+                        <li class="breadcrumb-item active">Today Expenses</li>
                     </ol>
                 </div>
                 <div class="clearfix"></div>
@@ -21,13 +21,58 @@
     </div>
 
     <!-- end page title -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1>Search for Date</h1>
+                    {{ $date }}
+                    <form action="{{ route('expenses.search') }}" method="get">
 
+                        <div class="form-group">
+
+
+                            <input type="date" name="date" class="form-control">
+
+                        </div>
+                        <button type="submit" class="btn btn-purple waves-effect waves-light pull-right">Search</button>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1>Search for Yearly</h1>
+                    <form action="{{ route('expenses.search') }}" method="GET">
+                        <div class="form-group">
+                            <input type="text" name="year" class="form-control" placeholder="Year...">
+
+                        </div>
+                        <button type="submit" class="btn btn-purple waves-effect waves-light pull-right">Search</button>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @php
+    //    echo $date = App\Models\Expenses::where('date',date('d/m/Y'))->get();
+    // echo $_GET['date'];
+    @endphp
+    {{-- @if ($date) --}}
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <h1 style="text-align: center">Total: {{ $total }} Taka</h1>
+                <h1 style="text-align: center">{{ ($months)?$months:$years }} Total: {{ ($month_amount)?$month_amount:$year_amount }} Taka</h1>
                 <div class="card-header">
-                    <h1 class="card-title">All Expenses <a href="{{ route('expenses.create') }}" class="btn btn-sm btn-primary">add New</a></h1>
+                    <h1 class="card-title">All Expenses <a href="{{ route('expenses.create') }}"
+                            class="btn btn-sm btn-primary">add New</a></h1>
                 </div>
                 <div class="card-body">
                     <table id="responsive-datatable" class="table table-striped table-bordered dt-responsive nowrap"
@@ -43,7 +88,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($expenses as $item)
+                            @if ($year)
+                                  @foreach ($year as $item)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $item->details }}</td>
@@ -57,12 +103,35 @@
                                             class="btn btn-sm btn-info">Edit</a>
                                         <button value="{{ route('expenses.delete', $item->id) }}"
                                             class="btn btn-sm btn-danger delete_btn">Delete</button>
-                                             <a href="{{ route('expenses.show', $item->id) }}"
+                                        <a href="{{ route('expenses.show', $item->id) }}"
                                             class="btn btn-sm btn-primary">Show</a>
 
                                     </td>
                                 </tr>
                             @endforeach
+                            @endif
+
+                            @foreach ($month as $item)
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $item->details }}</td>
+                                    <td>{{ $item->amount }}</td>
+                                    <td>{{ $item->month }}</td>
+                                    <td>{{ $item->date }}</td>
+
+
+                                    <td>
+                                        <a href="{{ route('expenses.edit', $item->id) }}"
+                                            class="btn btn-sm btn-info">Edit</a>
+                                        <button value="{{ route('expenses.delete', $item->id) }}"
+                                            class="btn btn-sm btn-danger delete_btn">Delete</button>
+                                        <a href="{{ route('expenses.show', $item->id) }}"
+                                            class="btn btn-sm btn-primary">Show</a>
+
+                                    </td>
+                                </tr>
+                            @endforeach
+
 
                         </tbody>
                     </table>
@@ -70,7 +139,7 @@
             </div>
         </div>
     </div>
-
+    {{-- @endif --}}
 
 
 
@@ -92,8 +161,8 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                         var url = $(this).val();
-                         window.location.href = url;
+                        var url = $(this).val();
+                        window.location.href = url;
                     }
                 })
             })

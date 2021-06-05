@@ -14,9 +14,37 @@ class ExpensesController extends Controller
      */
     public function index()
     {
+
         return view('Admin.Expense.index',[
             'expenses'=>Expenses::all(),
+            'total'=>Expenses::all()->sum('amount'),
         ]);
+    }
+
+    // today_expenses Show
+
+    public function today_expenses(){
+
+        return view('Admin.Expense.today',[
+            'today'=>Expenses::where('date',date('d/m/Y'))->get(),
+        ]);
+    }
+
+    //search_expenses
+    public function search_expenses(Request $request){
+
+        // return view('Admin.Expense.search');
+
+         return view('Admin.Expense.search',[
+            'month'=>Expenses::where('date',$request->date)->get(),
+            'months'=>$request->month,
+            'years'=>$request->year,
+            'date'=>$request->date,
+            'month_amount'=>Expenses::where('date',$request->date)->sum('amount'),
+            'year'=>Expenses::where('year',$request->year)->get(),
+            'year_amount'=>Expenses::where('year',$request->year)->sum('amount'),
+        ]);
+
     }
 
     /**
