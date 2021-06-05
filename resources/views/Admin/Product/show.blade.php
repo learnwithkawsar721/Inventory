@@ -28,8 +28,8 @@
                     <h3 class="card-title text-white">Show Product</h3>
                 </div>
                 <div class="card-body">
-
-                        <div class="form-group">
+                      <img id="tenant_photo_viewer" src="{{ asset('Uploades/product/'.$product->product_img) }}"  />
+                        <div class="form-group mt-4">
                             <label for="product_name">Product Name</label>
                             <p>{{ $product->product_name }}</p>
                         </div>
@@ -78,13 +78,7 @@
                             <p>{{ $product->selling_price }}</p>
 
                         </div>
-                        <div class="form-group">
-                            <label for="tenant_photo">Product photo</label>
-                            <br>
-                            <img id="tenant_photo_viewer" src="{{ asset('Uploades/product/'.$product->product_img) }}" width="100" width="100" />
 
-
-                        </div>
                         <a href="{{ route('product.index') }}"  class="btn btn-purple waves-effect waves-light">Back</a>
                 </div>
                 <!-- card-body -->

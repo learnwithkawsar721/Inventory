@@ -38,6 +38,7 @@
                                 <th>Category</th>
                                 <th>Suppliers</th>
                                 <th>Godaun</th>
+                                <th>Route</th>
                                 <th>buy_price</th>
                                 <th>selling_price</th>
                                 <th>Image</th>
@@ -52,6 +53,7 @@
                                     <td>{{ $item->category->name }}</td>
                                     <td>{{ $item->suppler->name }}</td>
                                     <td>{{ $item->godaun }}</td>
+                                    <td>{{ $item->product_route }}</td>
                                     <td>{{ $item->buy_price}}</td>
                                     <td>{{ $item->selling_price}}</td>
                                     <td>
