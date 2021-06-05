@@ -14,7 +14,9 @@ class ExpensesController extends Controller
      */
     public function index()
     {
-        //
+        return view('Admin.Expense.index',[
+            'expenses'=>Expenses::all(),
+        ]);
     }
 
     /**
@@ -25,6 +27,7 @@ class ExpensesController extends Controller
     public function create()
     {
         //
+        return view('Admin.Expense.create');
     }
 
     /**
@@ -35,7 +38,16 @@ class ExpensesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'details'=>'required',
+            'amount'=>'required',
+        ]);
+        Expenses::create($request->except('_token'));
+        $notification = array(
+                'message'=>'Expenses Inserted Successfully',
+                'alert-type'=>'success',
+            );
+            return redirect(route('expenses.index'))->with($notification);
     }
 
     /**
@@ -44,9 +56,12 @@ class ExpensesController extends Controller
      * @param  \App\Models\Expenses  $expenses
      * @return \Illuminate\Http\Response
      */
-    public function show(Expenses $expenses)
+    public function show($id)
     {
-        //
+
+        return view('Admin.Expense.show',[
+            'expenses'=>Expenses::where('id',$id)->first()
+        ]);
     }
 
     /**
@@ -55,9 +70,12 @@ class ExpensesController extends Controller
      * @param  \App\Models\Expenses  $expenses
      * @return \Illuminate\Http\Response
      */
-    public function edit(Expenses $expenses)
+    public function edit($id)
     {
-        //
+
+        return view('Admin.Expense.edit',[
+            'expenses'=>Expenses::where('id',$id)->first()
+        ]);
     }
 
     /**
@@ -67,9 +85,19 @@ class ExpensesController extends Controller
      * @param  \App\Models\Expenses  $expenses
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Expenses $expenses)
+    public function update(Request $request, $id)
     {
-        //
+         $request->validate([
+            'details'=>'required',
+            'amount'=>'required',
+        ]);
+        $expenses =Expenses::where('id',$id)->first();
+        $expenses->update($request->except('_token','_method'));
+         $notification = array(
+                'message'=>'Expenses Update Successfully',
+                'alert-type'=>'success',
+            );
+            return redirect(route('expenses.index'))->with($notification);
     }
 
     /**
@@ -78,8 +106,13 @@ class ExpensesController extends Controller
      * @param  \App\Models\Expenses  $expenses
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Expenses $expenses)
+    public function delete($id)
     {
-        //
+        Expenses::where('id',$id)->delete();
+         $notification = array(
+                'message'=>'Expenses Delete Successfully',
+                'alert-type'=>'success',
+            );
+            return back()->with($notification);
     }
 }

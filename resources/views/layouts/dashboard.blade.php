@@ -333,6 +333,12 @@
                                 <li><a href="{{ route('salary.pay') }}">Pay Salary</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="{{ route('expenses.index') }}" class="waves-effect">
+                                <i class="mdi mdi-home"></i>
+                                <span> Expenses </span>
+                            </a>
+                        </li>
                     </ul>
 
                 </div>

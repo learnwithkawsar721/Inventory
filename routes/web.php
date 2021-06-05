@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\SuppliersController;
@@ -58,6 +59,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('product',ProductController::class);
     Route::get('/product/{id}/delete',[ProductController::class,'delete'])->name('product.delete');
     //Product Route Hear--------------------------------------End
+
+    //Expense Route Hear--------------------------------------Start
+    Route::resource('expenses',ExpensesController::class);
+    Route::get('/expenses/{id}/delete',[ExpensesController::class,'delete'])->name('expenses.delete');
+    //Expense Route Hear--------------------------------------End
 });
 
 Route::get('/test',[EmployeeController::class,'test']);
