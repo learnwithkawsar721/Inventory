@@ -6,9 +6,12 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Suppliers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image;
+use App\Exports\ProductExport;
+use App\Imports\ProductImport;
 use PhpParser\Node\Stmt\Echo_;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -156,5 +159,24 @@ class ProductController extends Controller
                 'alert-type'=>'success',
             );
         return back()->with($notification);
+    }
+
+    //import product
+    public function import(){
+        return view('Admin.Product.import');
+    }
+
+    // export product
+    public function export(){
+         return Excel::download(new ProductExport, 'products.xlsx');
+    }
+
+    public function import_product(Request $request){
+          Excel::import(new ProductImport, $request->file('import_file'));
+          $notification = array(
+                'message'=>'Product insert Successfully',
+                'alert-type'=>'success',
+            );
+            return redirect(route('product.index'))->with($notification);
     }
 }

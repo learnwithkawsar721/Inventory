@@ -61,6 +61,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/product/{id}/delete',[ProductController::class,'delete'])->name('product.delete');
     //Product Route Hear--------------------------------------End
 
+    //Excel Route Hear--------------------------------------Start
+    Route::get('/import', [ProductController::class,'import'])->name('product.import');
+    Route::get('/download/product', [ProductController::class,'export'])->name('download.product');
+    Route::post('/import/product', [ProductController::class,'import_product'])->name('import');
+    //Excel Route Hear--------------------------------------End
+
     //Expense Route Hear--------------------------------------Start
     Route::resource('expenses',ExpensesController::class);
     Route::get('/expenses/{id}/delete',[ExpensesController::class,'delete'])->name('expenses.delete');
@@ -71,6 +77,8 @@ Route::middleware(['auth'])->group(function () {
     //Attendeces Route Hear--------------------------------------Start
     Route::resource('attendeces',AttendeceController::class);
     //Attendeces Route Hear--------------------------------------End
+
+
 });
 
 Route::get('/test',[EmployeeController::class,'test']);
