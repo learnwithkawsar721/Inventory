@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendeceController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
@@ -66,6 +67,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/today/expenses',[ExpensesController::class,'today_expenses'])->name('expenses.today');
      Route::get('/search/expenses',[ExpensesController::class,'search_expenses'])->name('expenses.search');
     //Expense Route Hear--------------------------------------End
+
+    //Attendeces Route Hear--------------------------------------Start
+    Route::resource('attendeces',AttendeceController::class);
+    //Attendeces Route Hear--------------------------------------End
 });
 
 Route::get('/test',[EmployeeController::class,'test']);

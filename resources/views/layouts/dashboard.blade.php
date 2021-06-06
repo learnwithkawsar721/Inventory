@@ -365,15 +365,16 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript: void(1);" class="waves-effect">
+                            <a href="javascript: void(0);" class="waves-effect">
                                 <i class="fas fa-users"></i>
                                 <span>Attendece </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
 
-                                <li><a href="">First </a></li>
-                                <li><a href="">Second</a></li>
+                                <li><a href="{{ route('attendeces.create') }}">Take Attendece </a></li>
+                                <li><a href="{{ route('attendeces.index') }}">All Attendece</a></li>
+                                <li><a href="">Searce Attendece</a></li>
                             </ul>
                         </li>
 

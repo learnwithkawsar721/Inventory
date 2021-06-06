@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendece;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class AttendeceController extends Controller
@@ -14,7 +15,9 @@ class AttendeceController extends Controller
      */
     public function index()
     {
-        //
+        return view('Admin.Attendece.index',[
+            'attendece'=>Attendece::all()
+        ]);
     }
 
     /**
@@ -24,7 +27,10 @@ class AttendeceController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('Admin.Attendece.create',[
+            'employee'=>Employee::all()
+        ]);
     }
 
     /**
@@ -35,7 +41,29 @@ class AttendeceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       if(Attendece::where('date',$request->date)->exists()){
+            $notification = array(
+                'message'=>'ToDay Attendeces Alrady Exists',
+                'alert-type'=>'error',
+            );
+          return back()->with($notification);
+       }else{
+          foreach($request->attendece as $key=> $value){
+              Attendece::create([
+                  'user_id'=>$key,
+                  'date'=>$request->date,
+                  'month'=>$request->month,
+                  'year'=>$request->year,
+                  'attendece'=>$value,
+              ]);
+
+          }
+            $notification = array(
+                'message'=>'ToDay Attendeces Successfully',
+                'alert-type'=>'success',
+            );
+          return back()->with($notification);
+       }
     }
 
     /**
@@ -69,7 +97,12 @@ class AttendeceController extends Controller
      */
     public function update(Request $request, Attendece $attendece)
     {
-        //
+        $attendece->update($request->except('_token','_method'));
+         $notification = array(
+                'message'=>'Attendeces Update Successfully',
+                'alert-type'=>'success',
+            );
+          return back()->with($notification);
     }
 
     /**
