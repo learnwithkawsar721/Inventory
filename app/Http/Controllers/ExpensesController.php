@@ -26,7 +26,7 @@ class ExpensesController extends Controller
     public function today_expenses(){
 
         return view('Admin.Expense.today',[
-            'today'=>Expenses::where('date',date('d/m/Y'))->get(),
+            'today'=>Expenses::where('date',date('Y-m-d'))->get(),
         ]);
     }
 
@@ -37,7 +37,7 @@ class ExpensesController extends Controller
 
          return view('Admin.Expense.search',[
             'month'=>Expenses::where('date',$request->date)->get(),
-            'months'=>$request->month,
+            'months'=>$request->date,
             'years'=>$request->year,
             'date'=>$request->date,
             'month_amount'=>Expenses::where('date',$request->date)->sum('amount'),

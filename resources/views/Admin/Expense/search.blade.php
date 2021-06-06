@@ -82,9 +82,6 @@
                                 <th>ID</th>
                                 <th>Details</th>
                                 <th>Amount</th>
-                                <th>Month</th>
-                                <th>Date</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -94,19 +91,10 @@
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $item->details }}</td>
                                     <td>{{ $item->amount }}</td>
-                                    <td>{{ $item->month }}</td>
-                                    <td>{{ $item->date }}</td>
 
 
-                                    <td>
-                                        <a href="{{ route('expenses.edit', $item->id) }}"
-                                            class="btn btn-sm btn-info">Edit</a>
-                                        <button value="{{ route('expenses.delete', $item->id) }}"
-                                            class="btn btn-sm btn-danger delete_btn">Delete</button>
-                                        <a href="{{ route('expenses.show', $item->id) }}"
-                                            class="btn btn-sm btn-primary">Show</a>
 
-                                    </td>
+
                                 </tr>
                             @endforeach
                             @endif
@@ -116,19 +104,6 @@
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $item->details }}</td>
                                     <td>{{ $item->amount }}</td>
-                                    <td>{{ $item->month }}</td>
-                                    <td>{{ $item->date }}</td>
-
-
-                                    <td>
-                                        <a href="{{ route('expenses.edit', $item->id) }}"
-                                            class="btn btn-sm btn-info">Edit</a>
-                                        <button value="{{ route('expenses.delete', $item->id) }}"
-                                            class="btn btn-sm btn-danger delete_btn">Delete</button>
-                                        <a href="{{ route('expenses.show', $item->id) }}"
-                                            class="btn btn-sm btn-primary">Show</a>
-
-                                    </td>
                                 </tr>
                             @endforeach
 
